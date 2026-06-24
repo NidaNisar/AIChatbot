@@ -69,3 +69,53 @@ h1 {
   transform: translateY(0);
 }
 
+@media (max-width: 900px) {
+  .textarea {
+    width: 100%;
+    max-width: 85%;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+
+  .textarea {
+    flex-direction: column;
+    width: 100%;
+    max-width: 95%;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .textt {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 1rem;
+  }
+
+  .chatbtn {
+    width: 100%;
+    margin-left: 0;
+    padding: 12px 0;
+  }
+}
+
+
+@media (max-width: 360px) {
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  .textt,
+  .chatbtn {
+    font-size: 0.9rem;
+  }
+}
