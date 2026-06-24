@@ -9,6 +9,9 @@ body {
   padding: 16px;
   box-sizing: border-box;
 }
+.mainchatbot{
+  margin-left: 260px
+}
 
 h1 {
   text-align: center;
@@ -20,6 +23,7 @@ h1 {
 
 .textarea {
   display: flex;
+  
   align-items: center;
   background: #ffffff;
   border: 1px solid #e0e0f0;
