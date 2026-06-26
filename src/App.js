@@ -8,7 +8,7 @@ function App() {
       
         
        <Chatbott/>
-       <Respone/>
+       
         
       
     </div>
