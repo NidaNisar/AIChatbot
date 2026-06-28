@@ -32,7 +32,7 @@ const Chatbott = () => {
       },
       body: JSON.stringify({
        question: currentprompt,
-      }),
+      }), 
     });
 
     const PromptD= await Cdata.json();
