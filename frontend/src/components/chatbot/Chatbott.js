@@ -2,10 +2,12 @@ import React, { use, useState,useEffect } from 'react';
 import './Chatbot.css'
 import MessageHistory from '../message/Messagehistory';
 import Respone from '../Response/Respone';
+import Loading from '../../loading/Loading';
+
 const Chatbott = () => {
   // Statees
 
-  
+  const[load,setload]=useState(true)
   const[fullprompt,setfullprompt]=useState('')
   const[history,sethistory]=useState([]);
   const[answer,setanswer]=useState([])
@@ -36,6 +38,10 @@ const Chatbott = () => {
     });
 
     const PromptD= await Cdata.json();
+    if(PromptD.success===true)
+    {
+      setload(!load)
+    }
     setanswer(PromptD);
     console.log(answer)
     sethistory((prev)=>([...prev,PromptD]))
@@ -71,6 +77,8 @@ const Chatbott = () => {
       <button  className='chatbtn' type='submit' onClick={handleChange} >Send</button>
     </div>
     <MessageHistory messages={history}/>
+    
+    <Loading load={load}/>
     <Respone answer={answer} />
     </div>
   );
