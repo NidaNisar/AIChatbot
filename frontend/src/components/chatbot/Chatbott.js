@@ -25,7 +25,7 @@ const Chatbott = () => {
     const currentprompt=fullprompt;
     e.preventDefault();
      try {
-    const Cdata = await fetch("http://localhost:5000/api/prompt", {
+    const Cdata = await fetch("http://localhost:5000/api/gemini", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,6 +36,8 @@ const Chatbott = () => {
     });
 
     const PromptD= await Cdata.json();
+    setanswer(PromptD);
+    console.log(answer)
     sethistory((prev)=>([...prev,PromptD]))
     
     console.log( "Questions",PromptD);
@@ -43,20 +45,12 @@ const Chatbott = () => {
     console.log(error);
   }
       
-    const Rdata = await fetch("http://localhost:5000/api/getrespone", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        prompt: currentprompt,
-      }),
-    });
+   
 
-    const responses = await Rdata.json();
-    setanswer(responses);
+    
+    // setanswer(responses);
 
-    console.log(responses);
+    
   
    
    
