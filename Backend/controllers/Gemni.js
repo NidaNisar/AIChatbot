@@ -7,16 +7,24 @@ const gemini= async(req,res)=>{
  
    try {
        const {question}=req.body
-       const aiclient= new GoogleGenAI({
+       const userC= await promptmodel.create({content:question,
+         role:"user"
+       })
+       const ai= new GoogleGenAI({
         apikey:process.env.GEMINI_API_KEY
        })
      const response = await ai.models.generateContent({
         model:"gemini-2.5-flash",
-        content:question,
+        contents:userC,
+     })
+     const aicontent= await promptmodel.create({
+      content:response.text,
+      role:"ai-model"
      })
      res.json({
         success:true,
-        reply:response.text
+        reply:aicontent,
+        question:question
      })
    } catch (error) {
     res.status(400).json({
