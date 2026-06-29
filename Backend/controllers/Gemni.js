@@ -11,11 +11,11 @@ const gemini= async(req,res)=>{
          role:"user"
        })
        const ai= new GoogleGenAI({
-        apikey:process.env.GEMINI_API_KEY
+        apiKey:process.env.GEMINI_API_KEY
        })
      const response = await ai.models.generateContent({
         model:"gemini-2.5-flash",
-        contents:userC,
+        contents:question,
      })
      const aicontent= await promptmodel.create({
       content:response.text,
@@ -23,7 +23,7 @@ const gemini= async(req,res)=>{
      })
      res.json({
         success:true,
-        reply:aicontent,
+        reply:aicontent.content,
         question:question
      })
    } catch (error) {
@@ -34,5 +34,13 @@ const gemini= async(req,res)=>{
     });
 
 }
+}
+const getgemini=(req,res)=>{
+  try {
+    const dataa=promptmodel.find();
+  } catch (error) {
+    
+  }
+
 }
 module.exports=gemini

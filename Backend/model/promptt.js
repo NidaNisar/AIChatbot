@@ -1,16 +1,16 @@
 const {model,Schema}=require('mongoose');
 
 const promptschema= new Schema({
-    content:{
+    question:{
         type:String,
         require:true,
         
     },
-    role:{
+    answer:{
         type:String,
-        require:true,
-        enum:["user","ai-model"]
-    },
+     
+    }
+   
     
 
 },
