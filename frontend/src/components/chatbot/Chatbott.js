@@ -7,7 +7,7 @@ import Loading from '../../loading/Loading';
 const Chatbott = () => {
   // Statees
 
-  const[load,setload]=useState(true)
+  const[load,setload]=useState(false)
   const[fullprompt,setfullprompt]=useState('')
   const[history,sethistory]=useState([]);
   const[answer,setanswer]=useState([])
@@ -15,7 +15,7 @@ const Chatbott = () => {
 
   const sendprompt= async(e)=>{
    const {value,name} = e.target;
-  //  setfullprompt((prev)=>({...prev,[name]:value}))
+ 
   setfullprompt(value);
   
        
@@ -25,6 +25,7 @@ const Chatbott = () => {
   // get responsse
   const handleChange= async (e)=>{
     const currentprompt=fullprompt;
+    setload(true)
     e.preventDefault();
      try {
     const Cdata = await fetch("http://localhost:5000/api/gemini", {
@@ -40,35 +41,19 @@ const Chatbott = () => {
     const PromptD= await Cdata.json();
     if(PromptD.success===true)
     {
-      setload(!load)
+      setload(false);
+      console.log(load)
     }
     setanswer(PromptD);
     console.log(answer)
-    sethistory((prev)=>([...prev,PromptD]))
+    
     
     console.log( "Questions",PromptD);
   } catch (error) {
     console.log(error);
   }
-      
-   
+}
 
-    
-    // setanswer(responses);
-
-    
-  
-   
-   
-    
-  }
-   
-  // UseEffect
-
-
-   useEffect(() => {
-    console.log('history :', history);
-  }, [history]);
   return (
     <div className='mainchatbot'>
       <div> <h1>AI CHATBOT</h1></div>
@@ -76,7 +61,7 @@ const Chatbott = () => {
       <input className='textt' type='text' name='usertext' value={fullprompt} onChange={sendprompt} placeholder='Enter your text'/>
       <button  className='chatbtn' type='submit' onClick={handleChange} >Send</button>
     </div>
-    <MessageHistory messages={history}/>
+    <MessageHistory messages={history} />
     
     <Loading load={load}/>
     <Respone answer={answer} />
