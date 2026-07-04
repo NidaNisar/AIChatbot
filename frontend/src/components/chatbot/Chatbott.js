@@ -59,7 +59,7 @@ const Chatbott = () => {
       <div> <h1>AI CHATBOT</h1></div>
     <div className='textarea'>
       <input className='textt' type='text' name='usertext' value={fullprompt} onChange={sendprompt} placeholder='Enter your text'/>
-      <button  className='chatbtn' type='submit' onClick={handleChange} >Send</button>
+      <button  className='chatbtn' type='submit' disabled={load} onClick={handleChange} >{load?"Processing":"Send"}</button>
     </div>
     <MessageHistory messages={history} />
     
