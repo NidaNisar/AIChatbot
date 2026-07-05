@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Respone.css'
 import Loading from '.././../loading/Loading';
-const Respone = ({answer}) => {
+import { ChatContext } from '../../context/ChatContext';
 
-  
-  return (
+const Respone = ({answer}) => {
+  const{Cresponse,load,messageresponse}=useContext(ChatContext)
+return (
     <div>
-      {/* <Loading/> */}
-        <div className='response' > <p > {answer.reply}</p></div>
+      
+        <div className='response' > <p> {Cresponse ? Cresponse : answer.reply}</p></div>
       
     </div>
   );

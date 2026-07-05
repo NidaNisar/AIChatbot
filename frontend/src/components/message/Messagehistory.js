@@ -2,12 +2,14 @@ import React, { useEffect, useState ,useContext} from 'react';
 import './Messagehistory.css';
 import { ChatContext } from '../../context/ChatContext';
 const MessageHistory = () => {
-  const { getmess,getdata,setgetmess } = useContext(ChatContext); 
+  const { getmess,getdata,setgetmess ,Cresponse,setCresponse,messageclick} = useContext(ChatContext); 
+  
 useEffect(() => {
 
    getdata();
-   console.log("history",getmess)
+  
   }, [getmess]);
+  
   return (
     <div className='mainrecents'>
       <div className='recents'>
@@ -18,7 +20,7 @@ useEffect(() => {
           <p className='empty'>No message yet</p>
         ) : (
           getmess.map((msg, index) => (
-            <p key={index} className='message-item'>
+            <p key={index} className='message-item' onClick={()=>messageclick(msg._id)}>
               {msg.question}
             </p>
           ))

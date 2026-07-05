@@ -1,16 +1,13 @@
-import React, { use, useState,useEffect } from 'react';
+import React, { use, useState,useEffect, useContext } from 'react';
 import './Chatbot.css'
 import MessageHistory from '../message/Messagehistory';
 import Respone from '../Response/Respone';
 import Loading from '../../loading/Loading';
-
+import { ChatContext } from '../../context/ChatContext';
 const Chatbott = () => {
   // Statees
-
-  const[load,setload]=useState(false)
-  const[fullprompt,setfullprompt]=useState('')
-  const[history,sethistory]=useState([]);
-  const[answer,setanswer]=useState([])
+const{load,setload,fullprompt,setfullprompt,history,sethistory,answer,setanswer,setCresponse,setmessageresponse}=useContext(ChatContext)
+ 
   // send Function
 
   const sendprompt= async(e)=>{
@@ -24,6 +21,8 @@ const Chatbott = () => {
 
   // get responsse
   const handleChange= async (e)=>{
+    setmessageresponse(false)
+    setCresponse('');
     const currentprompt=fullprompt;
     setload(true)
     e.preventDefault();
