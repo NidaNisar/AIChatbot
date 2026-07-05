@@ -7,9 +7,7 @@ const gemini= async(req,res)=>{
  
    try {
        const {question}=req.body
-       const userC= await promptmodel.create({content:question,
-         role:"user"
-       })
+      
        const ai= new GoogleGenAI({
         apiKey:process.env.GEMINI_API_KEY
        })
@@ -18,12 +16,12 @@ const gemini= async(req,res)=>{
         contents:question,
      })
      const aicontent= await promptmodel.create({
-      content:response.text,
-      role:"ai-model"
+      question:question,
+      answer:response.text
      })
      res.json({
         success:true,
-        reply:aicontent.content,
+        reply:response.text,
         question:question
      })
    } catch (error) {
@@ -35,12 +33,37 @@ const gemini= async(req,res)=>{
 
 }
 }
-const getgemini=(req,res)=>{
-  try {
-    const dataa=promptmodel.find();
+const getgemini= async (req,res)=>{
+   try {
+    const data = await promptmodel.find().sort({ createdAt: 1 });
+
+    res.json({
+      success: true,
+      data,
+    });
   } catch (error) {
-    
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
+ 
+
 
 }
-module.exports=gemini
+ const deleteg= async(req,res)=>{
+    try {
+      const dell= await promptmodel.deleteMany()
+       res.json({
+      success: true,
+      
+    });
+    } catch (error) {
+      res.status(500).json({
+      success: false,
+      message: error.message,
+    }); 
+    }
+  }
+ 
+module.exports={gemini,getgemini,deleteg}
