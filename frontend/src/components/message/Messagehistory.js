@@ -1,27 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,useContext} from 'react';
 import './Messagehistory.css';
-
+import { ChatContext } from '../../context/ChatContext';
 const MessageHistory = () => {
-  const[getmess,setgetmess]=useState([])
-  const getdata= async()=>{
-  try {
-     const Gdata = await fetch("http://localhost:5000/api/getgemini", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-       
-     
-    });
-    const getd= await Gdata.json();
-    console.log("getd",getd)
-    setgetmess([...getd.data])
-    
-  } catch (error) {
-    console.log(error)
-  }
-
- }   
+  const { getmess,getdata,setgetmess } = useContext(ChatContext); 
 useEffect(() => {
 
    getdata();
