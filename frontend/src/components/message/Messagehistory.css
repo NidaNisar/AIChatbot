@@ -1,34 +1,93 @@
+:root {
+  --sidebar-bg: #ffffff;
+  --border-color: #e5e5e5;
+  --text-primary: #1a1a1a;
+  --text-secondary: #6e6e80;
+  --hover-bg: #f5f5f7;
+  --active-bg: #ececef;
+  --accent: #10a37f;
+}
+
 .mainrecents {
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
-  width: 200px;
-  background-color: #ffffff;
-  color: #ececec;
+  width: 260px;
+  background-color: var(--sidebar-bg);
+  color: var(--text-primary);
   display: flex;
   flex-direction: column;
-  border-right: 1px solid  #ecdfdf;
+  border-right: 1px solid var(--border-color);
   overflow-y: auto;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
 .recents {
-  padding: 16px;
-  border-bottom: 1px solid #ecdfdf;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .recents h1 {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   margin: 0;
+  color: var(--text-primary);
+  letter-spacing: 0.2px;
 }
 
+/* New Chat button */
+.newchat {
+  display: flex;
+  align-items: center;
+  margin: 12px 16px;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
+}
+
+.newchat:hover {
+  background-color: var(--hover-bg);
+  border-color: #d0d0d5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.newchat:active {
+  background-color: var(--active-bg);
+}
+
+.newchat > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.newchat svg {
+  flex-shrink: 0;
+  color: var(--text-primary);
+}
+
+.newchat p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* Message list */
 .message-list {
   flex: 1;
-  padding: 8px;
+  padding: 8px 12px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 .message-item {
@@ -40,15 +99,85 @@
   text-overflow: ellipsis;
   cursor: pointer;
   margin: 0;
-  color: black;
+  color: var(--text-primary);
+  transition: background-color 0.15s ease;
 }
 
 .message-item:hover {
-  background-color: #b1a2a2;
+  background-color: var(--hover-bg);
+}
+
+.message-item:active {
+  background-color: var(--active-bg);
 }
 
 .empty {
   padding: 10px 12px;
-  font-size: 14px;
-  color: #8e8ea0;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* ---------- Responsive ---------- */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .mainrecents {
+    width: 220px;
+  }
+}
+
+/* Small tablets / large phones — collapse to icon-only rail */
+@media (max-width: 768px) {
+  .mainrecents {
+    width: 72px;
+  }
+
+  .recents h1,
+  .message-item,
+  .newchat p {
+    display: none;
+  }
+
+  .newchat {
+    justify-content: center;
+    padding: 10px;
+    margin: 12px 8px;
+  }
+
+  .newchat > div {
+    justify-content: center;
+    gap: 0;
+  }
+
+  .message-list {
+    align-items: center;
+  }
+}
+
+/* Phones — hide sidebar off-canvas, toggle via a button (see note below) */
+@media (max-width: 480px) {
+  .mainrecents {
+    width: 260px;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    z-index: 1000;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .mainrecents.open {
+    transform: translateX(0);
+  }
+
+  .recents h1,
+  .message-item,
+  .newchat p {
+    display: block;
+  }
+
+  .newchat > div {
+    justify-content: flex-start;
+    gap: 10px;
+  }
 }
