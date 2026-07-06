@@ -1,6 +1,8 @@
 import React, { useEffect, useState ,useContext} from 'react';
 import './Messagehistory.css';
 import { ChatContext } from '../../context/ChatContext';
+import { MessageSquare } from 'lucide-react';
+
 const MessageHistory = () => {
   const { getmess,getdata,setgetmess ,Cresponse,setCresponse,messageclick} = useContext(ChatContext); 
   
@@ -15,6 +17,12 @@ useEffect(() => {
       <div className='recents'>
         <h1>Recents</h1>
       </div>
+      <div className='newchat'>
+  <div>
+    <MessageSquare size={18} />
+    <p>New Chat</p>
+  </div>
+</div>
       <div className='message-list'>
         {getmess.length === 0 ? (
           <p className='empty'>No message yet</p>
