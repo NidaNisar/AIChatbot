@@ -11,19 +11,30 @@ const gemini= async(req,res)=>{
        const ai= new GoogleGenAI({
         apiKey:process.env.GEMINI_API_KEY
        })
-     const response = await ai.models.generateContent({
+
+
+     const response = await ai.models.generateContentStream({
         model:"gemini-2.5-flash",
         contents:question,
      })
+     res.header("Content-type","text/plain; charset=utf-8")
+     res.header("Transfer-Encoding","chunked")
+let fulltext=''
+console.log(response);
+// console.log(Object.keys(response));
+        for await ( let chunk of response)
+        {
+               const text=chunk.text;
+               fulltext=fulltext+text;
+               res.write(text) ; 
+        }
+        res.end();
+        console.log(fulltext)
      const aicontent= await promptmodel.create({
       question:question,
-      answer:response.text
+      answer:fulltext
      })
-     res.json({
-        success:true,
-        reply:response.text,
-        question:question
-     })
+    
    } catch (error) {
     res.status(400).json({
       success: false,
