@@ -5,8 +5,10 @@ import { ChatContext } from '../../context/ChatContext';
 
 const Respone = ({answer}) => {
   const{Cresponse,load,messageresponse}=useContext(ChatContext)
+
 return (
     <div>
+      {/* {Cresponse ? Cresponse : answer.reply} */}
       
         <div className='response' > <p> {Cresponse ? Cresponse : answer.reply}</p></div>
       

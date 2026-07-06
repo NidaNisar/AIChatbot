@@ -14,15 +14,13 @@ const{load,setload,fullprompt,setfullprompt,history,sethistory,answer,setanswer,
    const {value,name} = e.target;
  
   setfullprompt(value);
-  
-       
-
   }
 
   // get responsse
   const handleChange= async (e)=>{
     setmessageresponse(false)
     setCresponse('');
+    
     const currentprompt=fullprompt;
     setload(true)
     e.preventDefault();
@@ -36,18 +34,36 @@ const{load,setload,fullprompt,setfullprompt,history,sethistory,answer,setanswer,
        question: currentprompt,
       }), 
     });
+const reader=Cdata.body.getReader()
+const decoder= new TextDecoder();
+let resultd='';
+while(true)
+{
+  
+  const{value,done}= await reader.read()
+  
 
-    const PromptD= await Cdata.json();
-    if(PromptD.success===true)
-    {
-      setload(false);
-      console.log(load)
-    }
-    setanswer(PromptD);
-    console.log(answer)
+   console.log("done value",done)
+     if(done===false)
+     {
+      setload(false)
+     }
+  if (done)
+  {
+    break;
+  }
+   console.log("chunk:", decoder.decode(value));
+  resultd+=decoder.decode(value,{stream:true})
+
+setanswer({
+      reply:resultd
+    });
+}
     
     
-    console.log( "Questions",PromptD);
+   
+    
+    
   } catch (error) {
     console.log(error);
   }
