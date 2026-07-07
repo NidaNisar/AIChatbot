@@ -4,8 +4,12 @@ import { ChatContext } from '../../context/ChatContext';
 import { MessageSquare } from 'lucide-react';
 
 const MessageHistory = () => {
-  const { getmess,getdata,setgetmess ,Cresponse,setCresponse,messageclick} = useContext(ChatContext); 
-  
+  const { getmess,getdata,setgetmess ,Cresponse,setCresponse,messageclick,setanswer} = useContext(ChatContext); 
+   
+  const newchatclick=()=>{
+       setCresponse("")
+     setanswer({ reply: "" });
+  }
 useEffect(() => {
 
    getdata();
@@ -18,7 +22,7 @@ useEffect(() => {
         <h1>Recents</h1>
       </div>
       <div className='newchat'>
-  <div>
+  <div onClick={newchatclick}>
     <MessageSquare size={18} />
     <p>New Chat</p>
   </div>

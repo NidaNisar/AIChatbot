@@ -59,6 +59,7 @@ setanswer({
       reply:resultd
     });
 }
+console.log("answer",answer)
     
     
    
