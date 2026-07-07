@@ -46,7 +46,7 @@ export const ChatProvider = ({ children }) => {
   return (
     <ChatContext.Provider
       value={{
-       getmess,answer,setanswer,setgetmess,getdata,Cresponse,setCresponse,messageclick,load,setload,fullprompt,messageresponse,setmessageresponse,setfullprompt,history,sethistory,answer,setanswer
+       getmess,answer,setanswer,setgetmess,getdata,Cresponse,setCresponse,messageclick,load,setload,fullprompt,messageresponse,setmessageresponse,setfullprompt,history,sethistory
       }}
     >
       {children}

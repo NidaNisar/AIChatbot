@@ -1,4 +1,4 @@
-import React, {  useState,useEffect, useContext } from 'react';
+import React, {  useContext } from 'react';
 import './Chatbot.css'
 import MessageHistory from '../message/Messagehistory';
 import Respone from '../Response/Respone';

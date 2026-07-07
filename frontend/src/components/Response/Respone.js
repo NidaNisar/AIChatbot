@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import './Respone.css'
-import Loading from '.././../loading/Loading';
+
 import { ChatContext } from '../../context/ChatContext';
 
 const Respone = ({answer}) => {
-  const{Cresponse,load,messageresponse}=useContext(ChatContext)
+  const{Cresponse}=useContext(ChatContext)
 
 return (
     <div className='response-wrapper'>

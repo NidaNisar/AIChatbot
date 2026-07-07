@@ -1,10 +1,10 @@
-import React, { useEffect, useState ,useContext} from 'react';
+import React, { useEffect,useContext} from 'react';
 import './Messagehistory.css';
 import { ChatContext } from '../../context/ChatContext';
 import { MessageSquare } from 'lucide-react';
 
 const MessageHistory = () => {
-  const { getmess,getdata,setgetmess ,Cresponse,setCresponse,messageclick,setanswer} = useContext(ChatContext); 
+  const { getmess,getdata ,setCresponse,messageclick,setanswer} = useContext(ChatContext); 
    
   const newchatclick=()=>{
        setCresponse("")
