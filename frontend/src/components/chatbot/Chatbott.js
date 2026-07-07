@@ -1,4 +1,4 @@
-import React, { use, useState,useEffect, useContext } from 'react';
+import React, {  useState,useEffect, useContext } from 'react';
 import './Chatbot.css'
 import MessageHistory from '../message/Messagehistory';
 import Respone from '../Response/Respone';
@@ -6,12 +6,12 @@ import Loading from '../../loading/Loading';
 import { ChatContext } from '../../context/ChatContext';
 const Chatbott = () => {
   // Statees
-const{load,setload,fullprompt,setfullprompt,history,sethistory,answer,setanswer,setCresponse,setmessageresponse}=useContext(ChatContext)
+const{load,setload,fullprompt,setfullprompt,history,answer,setanswer,setCresponse,setmessageresponse}=useContext(ChatContext)
  
   // send Function
 
   const sendprompt= async(e)=>{
-   const {value,name} = e.target;
+   const {value} = e.target;
  
   setfullprompt(value);
   }

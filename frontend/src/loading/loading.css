@@ -1,4 +1,14 @@
-.loadingg{
-    margin-top: 100px;
-    margin-left: 256px;
+.loadingg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 24px auto;
+}
+
+.loadingg .MuiCircularProgress-root {
+  color: #4338ca; /* matches --accent from Chatbot.css */
+}
+
+.loadingg .MuiCircularProgress-circle {
+  stroke-linecap: round;
 }
