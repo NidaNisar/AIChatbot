@@ -14,7 +14,7 @@ useEffect(() => {
 
    getdata();
   
-  }, [getmess]);
+  }, [getdata]);
   
   return (
     <div className='mainrecents'>
